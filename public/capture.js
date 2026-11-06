@@ -53,6 +53,7 @@ export class Capture {
     }
 
     const ctx = new AudioContext();
+    if (ctx.state === 'suspended') await ctx.resume();
     await ctx.audioWorklet.addModule('/assets/audio-clock.js');
     const clock = new AudioWorkletNode(ctx, 'audio-clock', { outputChannelCount: [1] });
     const dest = ctx.createMediaStreamDestination();
