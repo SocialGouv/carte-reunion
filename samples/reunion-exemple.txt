@@ -1,0 +1,39 @@
+# Point management Studio Tech (exemple fictif)
+
+Bon, je crois qu'on est tous là. Est-ce que tu m'entends bien ? Oui, c'est bon. Alors on a trois sujets aujourd'hui : le rattachement du pôle DevOps, les astreintes de fin d'année, et le recrutement pour l'équipe front. On commence par le DevOps parce que c'est celui qui traîne depuis le mois dernier.
+
+Donc la question c'est est-ce qu'on rattache formellement le pôle DevOps à une des équipes produit ou est-ce qu'on le garde transverse. Moi je propose qu'on le garde hors du rattachement formel, avec juste un point hebdomadaire avec chaque tech lead. Ça leur laisse la liberté de prioriser entre les produits.
+
+Oui mais le problème c'est que aujourd'hui ils n'ont plus d'interlocuteur formel côté management depuis le départ de Thomas. Quand il y a un arbitrage entre deux produits, personne ne tranche, et c'est eux qui se retrouvent à choisir, ce qui n'est pas leur rôle. Ça, ça remonte à chaque rétro.
+
+Alors une autre option ce serait de les rattacher à la plateforme, puisque de toute façon quatre-vingts pour cent de leur travail c'est du socle, du cluster, de la CI. Ça aurait du sens d'avoir le même responsable pour la plateforme et pour le DevOps. Et l'arbitrage serait fait par une seule personne.
+
+Le risque avec la plateforme c'est qu'ils deviennent une équipe de plus qui a sa propre feuille de route, et que les produits se retrouvent à faire la queue pour avoir de l'aide sur leurs déploiements. On a déjà vu ça il y a deux ans, ça avait créé un goulot d'étranglement pendant six mois.
+
+Pardon, je vous entends mal, il y a de l'écho. C'est mieux là ? Oui c'est mieux. Donc je disais, l'avantage du rattachement à la plateforme c'est aussi la continuité, les astreintes et les mises à jour du cluster sont déjà gérées ensemble. Ça simplifie le planning.
+
+Bon, je propose qu'on fasse un essai. On rattache le DevOps à la plateforme pendant trois mois, avec un engagement clair : un créneau réservé chaque semaine pour les demandes des produits. Et on refait le point fin février. Est-ce que tout le monde est d'accord ? Oui. D'accord pour moi. OK, c'est décidé, on part là-dessus.
+
+Camille, tu peux rédiger la note pour l'annoncer aux équipes ? Oui, je m'en occupe, je l'envoie d'ici vendredi. Et Karim tu préviens les tech leads en direct avant que la note parte, pour qu'ils ne l'apprennent pas par mail. Oui, je les vois tous demain matin de toute façon, je leur en parle.
+
+Deuxième sujet, les astreintes de fin d'année. Il faut couvrir la période du vingt-deux décembre au trois janvier. Aujourd'hui on a seulement trois volontaires et il en faudrait au moins cinq pour que ce soit tenable. La question c'est comment on complète le planning.
+
+Moi je pense qu'on pourrait demander aux prestataires de prendre une partie des astreintes. C'est prévu dans certains marchés, il faut juste vérifier lesquels. Ça soulagerait les internes qui ont déjà fait beaucoup cette année.
+
+Je ne suis pas très à l'aise avec ça. Les prestataires n'ont pas tous les accès en production, et leur donner des accès juste pour deux semaines c'est un risque de sécurité. Et en cas d'incident grave, il faut quelqu'un qui connaisse l'historique des applications.
+
+Une autre idée, on pourrait réduire le périmètre de l'astreinte. Ne couvrir que les services critiques, c'est-à-dire ceux qui sont ouverts aux usagers, et laisser les outils internes en mode meilleur effort. Ça réduit beaucoup la charge et trois ou quatre personnes peuvent suffire.
+
+Ça me paraît raisonnable. Par contre il faut qu'on soit d'accord sur la liste des services critiques, parce que chacun a sa définition. Et il faut prévenir les métiers que certains outils ne seront pas couverts pendant les fêtes.
+
+OK, alors on retient la réduction du périmètre aux services ouverts aux usagers. Pour les prestataires on ne tranche pas aujourd'hui, on regarde d'abord ce que disent les marchés. Inès, tu peux faire la liste des services critiques et la partager d'ici mercredi ? Oui, je la fais, je vous l'envoie mercredi.
+
+Et moi je regarde les marchés pour savoir lesquels prévoient des astreintes, je vous fais un retour la semaine prochaine. Très bien. Alors, dernier sujet, le recrutement pour l'équipe front. On a eu une seule candidature sérieuse en deux mois sur le poste de développeur front confirmé.
+
+Le problème c'est la grille, on n'est pas du tout au niveau du marché pour un profil confirmé. Je pense qu'il faudrait ouvrir le poste en junior, avec un vrai plan de montée en compétence et du binômage avec les seniors pendant les six premiers mois.
+
+Le junior ça marche si on a du temps de senior à y consacrer. Or aujourd'hui l'équipe front est déjà en tension, ils sont deux pour quatre produits. Ajouter un junior à encadrer, à court terme, ça va plutôt les ralentir.
+
+On pourrait aussi passer par un prestataire le temps de trouver quelqu'un. Ça coûte plus cher mais ça soulage l'équipe tout de suite. Oui mais ça ne règle pas le fond, dans un an on aura le même problème. Bon, on n'arrivera pas à trancher aujourd'hui, il nous manque des éléments.
+
+Je propose qu'on remette le sujet au prochain point, avec des chiffres : le coût d'un prestataire sur six mois et le temps de senior nécessaire pour un junior. Karim, tu peux préparer ça ? Oui, je prépare les deux chiffrages pour la prochaine fois. Parfait. Merci à tous, on s'arrête là.

@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carte-reunion
+  labels: { app: carte-reunion }
+spec:
+  replicas: 1 # l'état des séances est en mémoire : jamais plus d'un replica
+  strategy:
+    type: Recreate # pas deux pods en même temps sur le même état
+  selector:
+    matchLabels: { app: carte-reunion }
+  template:
+    metadata:
+      labels: { app: carte-reunion }
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        seccompProfile: { type: RuntimeDefault }
+      # Laisse le temps de sauvegarder les séances à l'arrêt (SIGTERM).
+      terminationGracePeriodSeconds: 20
+      containers:
+        - name: app
+          image: ghcr.io/socialgouv/carte-reunion:latest # remplacé par le tag de l'image dans kustomization.yaml
+          ports:
+            - { name: http, containerPort: 3000 }
+          envFrom:
+            - configMapRef: { name: carte-reunion-config }
+            - secretRef: { name: carte-reunion-secrets }
+          volumeMounts:
+            - { name: data, mountPath: /data }
+          readinessProbe:
+            httpGet: { path: /healthz, port: http }
+            periodSeconds: 10
+          livenessProbe:
+            httpGet: { path: /healthz, port: http }
+            periodSeconds: 30
+            failureThreshold: 3
+          resources:
+            requests: { cpu: 100m, memory: 256Mi }
+            limits: { cpu: 500m, memory: 512Mi }
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: [ALL] }
+      volumes:
+        # Survit au redémarrage du conteneur, pas à la suppression du pod :
+        # un redéploiement efface les séances en cours. Ne pas déployer pendant une réunion.
+        - name: data
+          emptyDir: {}

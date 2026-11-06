@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: carte-reunion
+  annotations:
+    # SSE : sans ces deux annotations, nginx coupe la connexion au bout de 60 s ou retient les événements.
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-buffering: "off"
+    # Une tranche de 25 s en opus fait 100 à 200 ko ; 5 Mo laisse de la marge.
+    nginx.ingress.kubernetes.io/proxy-body-size: "5m"
+    # À adapter aux conventions du cluster Fabrique (émetteur de certificats, classe d'Ingress).
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts: [carte-reunion.DOMAINE-FABRIQUE]
+      secretName: carte-reunion-tls
+  rules:
+    - host: carte-reunion.DOMAINE-FABRIQUE
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: carte-reunion
+                port: { name: http }

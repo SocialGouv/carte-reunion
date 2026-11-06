@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: carte-reunion-config
+data:
+  LITELLM_BASE_URL: https://LITELLM-DNUM/v1
+  STT_MODEL: scaleway/whisper-large-v3
+  LLM_MODEL: scaleway/gpt-oss-120b
+  CHUNK_SECONDS: "25"
+  MAP_INTERVAL_SECONDS: "30"
+  MAP_MIN_NEW_WORDS: "150"
+  MAP_INTERVAL_MIN_WORDS: "20"
+  SESSION_TTL_HOURS: "24"
+  DATA_DIR: /data

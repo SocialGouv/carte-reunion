@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Carte de réunion</title>
+    <link rel="stylesheet" href="/assets/style.css" />
+    <script src="/vendor/dagre.min.js"></script>
+    <script type="module" src="/assets/app.js"></script>
+  </head>
+  <body class="session">
+    <header class="topbar">
+      <div class="title-block">
+        <h1 id="title">Chargement…</h1>
+        <span id="status" class="pill"></span>
+        <span id="offline" class="pill offline" hidden>Connexion perdue, reconnexion…</span>
+      </div>
+      <div class="toolbar">
+        <div id="capture-box" class="capture" hidden>
+          <button id="capture-btn" class="primary">Capturer</button>
+          <span id="level" class="level" aria-hidden="true"></span>
+          <span id="capture-status" class="muted"></span>
+          <span id="stt-errors" class="warn"></span>
+          <details class="help">
+            <summary>Comment capturer ?</summary>
+            <ol>
+              <li>Ouvre Visio dans un autre onglet de ce navigateur (Chrome ou Edge).</li>
+              <li>Clique sur Capturer, choisis l’onglet Visio et coche « Partager aussi le son de l’onglet ».</li>
+              <li>Autorise le micro : c’est lui qui capte ta voix, l’onglet Visio ne la rejoue pas.</li>
+              <li>Porte un casque, sinon les voix des autres arrivent en double.</li>
+            </ol>
+          </details>
+        </div>
+        <button id="share-btn" class="host-only" hidden>Lien participants</button>
+        <details class="menu">
+          <summary>Exporter</summary>
+          <div class="menu-items">
+            <a id="export-md" href="#">Markdown</a>
+            <a id="export-json" href="#">JSON</a>
+          </div>
+        </details>
+        <button id="close-btn" class="host-only danger" hidden>Clore la séance</button>
+      </div>
+    </header>
+    <div id="closed-banner" class="banner" hidden>Séance close : la carte est figée. Elle reste exportable pendant 24 h.</div>
+
+    <main class="layout">
+      <section id="map-pane" class="map-pane" aria-label="Carte">
+        <svg id="map" role="img" aria-label="Carte de la discussion"></svg>
+        <div class="map-controls">
+          <button id="zoom-in" aria-label="Zoomer">+</button>
+          <button id="zoom-out" aria-label="Dézoomer">−</button>
+          <button id="fit">Ajuster</button>
+        </div>
+        <div id="tooltip" class="tooltip" hidden></div>
+      </section>
+
+      <aside class="side">
+        <section id="node-panel" class="panel" hidden></section>
+
+        <section class="panel queue-panel">
+          <h2>Propositions <span id="queue-count" class="count"></span></h2>
+          <p id="queue-empty" class="muted">Les propositions du LLM arrivent ici, 30 à 90 s après les propos. Rien n’entre dans la carte sans un clic.</p>
+          <ol id="queue" class="queue"></ol>
+        </section>
+
+        <details class="panel">
+          <summary>Transcription récente</summary>
+          <div id="recent" class="recent"></div>
+        </details>
+
+        <details class="panel">
+          <summary>Indicateurs</summary>
+          <dl id="stats" class="stats"></dl>
+        </details>
+      </aside>
+    </main>
+    <div id="toasts" class="toasts" aria-live="polite"></div>
+  </body>
+</html>

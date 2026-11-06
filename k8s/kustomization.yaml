@@ -1,0 +1,13 @@
+# kubectl apply -k k8s/   (après avoir créé le Secret carte-reunion-secrets, voir secret.example.yaml)
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: carte-reunion
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+images:
+  - name: ghcr.io/socialgouv/carte-reunion
+    newTag: latest # remplacer par le sha du commit déployé

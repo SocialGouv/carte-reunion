@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Carte de réunion</title>
+    <link rel="stylesheet" href="/assets/style.css" />
+  </head>
+  <body class="home">
+    <main class="card">
+      <h1>Carte de réunion</h1>
+      <p>
+        Pendant une réunion Visio, un LLM propose les questions, propositions, arguments et décisions à partir de
+        la transcription. Les participants les acceptent, les corrigent ou les rejettent : rien n’entre dans la carte
+        sans un humain.
+      </p>
+      <form id="create">
+        <label>
+          <span>Titre de la séance</span>
+          <input name="title" required maxlength="140" placeholder="Point management du 6 novembre" autofocus />
+        </label>
+        <label id="token-field" hidden>
+          <span>Jeton de création</span>
+          <input name="token" type="password" autocomplete="off" />
+        </label>
+        <button class="primary" type="submit">Créer la séance</button>
+        <p id="error" class="warn" role="alert"></p>
+      </form>
+      <p class="muted small">
+        Tu obtiens un lien animateur, depuis lequel tu captures le son (Chrome ou Edge), et un lien participants à
+        partager. Pas de compte. La séance est supprimée 24 h après la dernière activité ; l’audio n’est jamais
+        conservé.
+      </p>
+    </main>
+    <script type="module">
+      const cfg = await fetch('/api/config').then((r) => r.json());
+      document.querySelector('#token-field').hidden = !cfg.createTokenRequired;
+      document.querySelector('#create').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const f = new FormData(e.target);
+        const res = await fetch('/api/sessions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title: f.get('title'), token: f.get('token') }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          document.querySelector('#error').textContent = data.error ?? `Erreur ${res.status}`;
+          return;
+        }
+        location.href = `/s/${data.id}?k=${data.hostKey}`;
+      });
+    </script>
+  </body>
+</html>
